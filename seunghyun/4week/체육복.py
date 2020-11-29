@@ -21,6 +21,7 @@ n	lost	    reserve	    return
 5	[2, 4]	    [3]	        4
 3	[3]	        [1]	        2
 6   [2,3,4,5]   [1,3,5]     5
+2   [1]         [2]         2
 
 n       는 전체
 lost    는 잃어버린사람
@@ -33,9 +34,9 @@ reserve 는 여벌을 가져온 사람
 3번 학생이 2번 학생이나 4번 학생에게 체육복을 빌려주면 학생 4명이 체육수업을 들을 수 있습니다.
 '''
 
-n       = 3
-lost    = [3]
-reserve = [1]
+n       = 2
+lost    = [2]
+reserve = [2]
 
 '''
 one_list : [1,1,1,1,1,1]
@@ -52,15 +53,28 @@ def solution(n, lost, reserve):
 
     for r in reserve:
         one_list[r-1] += 1
+    print(one_list)
 
-    for i in range(0 , len(one_list)-1):
+    if len(one_list) == 2:
+        for i in range(0 , len(one_list)):
+
+            if one_list[i] == 0 and one_list[i-1] == 2:
+                one_list[i-1] -= 1
+                one_list[i]   += 1
+
+            elif one_list[i] == 0 and one_list[i+1] == 2:
+                one_list[i+1] -= 1
+                one_list[i]   += 1
+
+    for i in range(0 , len(one_list)):
+
         if one_list[i] == 0 and one_list[i-1] == 2:
-            one_list[i-1] = 1
-            one_list[i]   = 1
+            one_list[i-1] -= 1
+            one_list[i]   += 1
 
         elif one_list[i] == 0 and one_list[i+1] == 2:
-            one_list[i+1] = 1
-            one_list[i]   = 1
+            one_list[i+1] -= 1
+            one_list[i]   += 1
 
     answer = len(one_list) - one_list.count(0)
 
