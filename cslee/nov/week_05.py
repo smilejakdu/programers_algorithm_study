@@ -39,8 +39,7 @@
 def valid_prime_number(num):
     if num == 2:
         return True
-    end_num = num - 1
-    for n in range(2, end_num):
+    for n in range(2, num):
         if num % n == 0:
             return False
     return True
@@ -55,4 +54,3 @@ def solution(n):
 
 
 print(solution(10))
-print(solution(5))
